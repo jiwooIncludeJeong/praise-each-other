@@ -17,7 +17,12 @@
       "~/*": ["./app/*"],
       "src/*" : ["./app/src/*"],
       "@libs/*": ["./app/src/libs/*"],
-      "@store/*": ["./app/src/store/*"]
+      "@store/*": ["./app/src/store/*"],
+      "@constants/*": ["./app/src/constants/*"],
+      "@hooks/*": ["./app/src/hooks/*"],
+      "@styles/*": ["./app/src/styles/*"],
+      "@assets/*": ["./app/src/assets/*"],
+      "@components/*": ["./app/src/components/*"]
     },
 
     // Remix takes care of building everything in `remix build`.

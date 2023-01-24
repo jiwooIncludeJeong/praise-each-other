@@ -1,22 +1,21 @@
-import { supabase } from "src/libs";
-import { useLoaderData } from "@remix-run/react";
+import { supabase } from 'src/libs';
+import { useLoaderData } from '@remix-run/react';
 
 export async function loader() {
-  const {data} = await supabase.from('temp').select();
-
+  // const {data} = await supabase.from('temp').select();
+  const data = {};
   return {
-    data
-  }
+    data,
+  };
 }
 
 export default function Index() {
+  const data = useLoaderData();
 
-  const data = useLoaderData()
-
-  console.log('supabase data : ',data)
+  console.log('supabase data : ', data);
 
   return (
-    <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
+    <div style={{ fontFamily: 'system-ui, sans-serif', lineHeight: '1.4' }}>
       <h1>PEO</h1>
       <ul>
         <li>
