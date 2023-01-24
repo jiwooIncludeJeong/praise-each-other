@@ -2,22 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ba54730b-4683-4c14-b8cf-74ae8e92639e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/assets/color.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/assets/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/components/common/ThemeLayout/ThemeLayout.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/components/common/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/constants/common.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/constants/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/hooks/common/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/hooks/common/useTheme.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/hooks/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/styles/global-styles.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/styles/theme.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/root.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/root.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/libs/supabase.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/libs/supabase.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

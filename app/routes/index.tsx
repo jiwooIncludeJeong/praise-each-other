@@ -1,42 +1,30 @@
 import { supabase } from 'src/libs';
 import { useLoaderData } from '@remix-run/react';
+import type { SupabaseClient } from '@supabase/supabase-js';
 
 export async function loader() {
-  // const {data} = await supabase.from('temp').select();
-  const data = {};
+  // const { data } = await supabase.from('User').select();
+
   return {
-    data,
+    data: {},
   };
 }
 
 export default function Index() {
-  const data = useLoaderData();
+  const { data } = useLoaderData();
 
-  console.log('supabase data : ', data);
+  const onClickToAdd = async () => {
+    //FIXME: from is not a function error -> SSR , process is not defined -> CSR
+    const res = await supabase.from('User').select();
+    console.log(res);
+  };
 
   return (
     <div style={{ fontFamily: 'system-ui, sans-serif', lineHeight: '1.4' }}>
       <h1>PEO</h1>
-      <ul>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/blog"
-            rel="noreferrer"
-          >
-            가보자
-          </a>
-        </li>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/jokes"
-            rel="noreferrer"
-          >
-            사이드 프로젝트 !
-          </a>
-        </li>
-      </ul>
+      <div onClick={onClickToAdd} style={{ cursor: 'pointer' }}>
+        user 생성
+      </div>
     </div>
   );
 }
