@@ -1,16 +1,26 @@
-import type { LinksFunction, MetaFunction } from '@remix-run/node';
+import type { LinksFunction, MetaFunction, LoaderArgs } from '@remix-run/node';
+import {json} from '@remix-run/node'
 import {
   Links,
   LiveReload,
   Meta,
   Outlet,
   Scripts,
-  ScrollRestoration,
+  ScrollRestoration, useLoaderData
 } from '@remix-run/react';
 import { RecoilRoot } from 'recoil';
 import ThemeLayout from '@components/common/ThemeLayout/ThemeLayout';
 import { GlobalStyles } from '@styles/global-styles';
 import { Normalize } from 'styled-normalize';
+import {useState} from 'react'
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import type {Database} from 'src/types/db_types';
+
+type TypedSupabaseClinet = SupabaseClient<Database>
+
+export type SupabaseOutletContext = {
+  supabase: TypedSupabaseClinet
+}
 
 export const links: LinksFunction = () => {
   return [
@@ -37,7 +47,22 @@ export const meta: MetaFunction = () => ({
   'apple-mobile-web-app-status-bar-style': 'default',
 });
 
+export const loader = async ({}:LoaderArgs) => {
+  // Server Side의 값을 받아오기 위해
+  const env = {
+    SUPABASE_URL:process.env.SUPABASE_URL||'',
+    SUPABASE_KEY:process.env.SUPABASE_KEY||''
+  }
+
+  return json({env})
+}
+
 export default function App() {
+  const { env } = useLoaderData<typeof loader>();
+  console.log(env)
+
+  const [supabase] = useState(()=>createClient<Database>(env.SUPABASE_URL, env.SUPABASE_KEY))
+
   return (
     <html lang="kr">
       <head>
@@ -50,7 +75,7 @@ export default function App() {
           <ThemeLayout>
             <Normalize />
             <GlobalStyles />
-            <Outlet />
+            <Outlet context={{supabase}}/>
             <ScrollRestoration />
             <Scripts />
             <LiveReload />
