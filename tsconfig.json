@@ -22,7 +22,8 @@
       "@hooks/*": ["./app/src/hooks/*"],
       "@styles/*": ["./app/src/styles/*"],
       "@assets/*": ["./app/src/assets/*"],
-      "@components/*": ["./app/src/components/*"]
+      "@components/*": ["./app/src/components/*"],
+      "@types/*": ["./app/src/types/*"]
     },
 
     // Remix takes care of building everything in `remix build`.

@@ -1,22 +1,24 @@
+import type { LoaderArgs } from '@remix-run/node';
 import { supabase } from 'src/libs';
 import { useLoaderData } from '@remix-run/react';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
-export async function loader() {
-  // const { data } = await supabase.from('User').select();
-
+export const loader = async ({}: LoaderArgs) => {
+  const { data } = await supabase.from('users').select();
   return {
-    data: {},
+    users: data ?? [];
   };
 }
 
 export default function Index() {
-  const { data } = useLoaderData();
+  const { users } = useLoaderData<typeof loader>();
+
+  console.log(users)
 
   const onClickToAdd = async () => {
     //FIXME: from is not a function error -> SSR , process is not defined -> CSR
-    const res = await supabase.from('User').select();
-    console.log(res);
+    // const res = await supabase.from('User').select();
+    // console.log(res);
   };
 
   return (

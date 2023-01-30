@@ -5,7 +5,8 @@
     "build": "remix build",
     "dev": "remix dev",
     "start": "remix-serve build",
-    "typecheck": "tsc -b"
+    "typecheck": "tsc -b",
+    "gen-types": "supabase gen types typescript --project-id thdwftgaeloxumzkaawu > app/src/types/db_types.ts"
   },
   "dependencies": {
     "@remix-run/node": "^1.10.1",
