@@ -1,7 +1,9 @@
-import React, { FC } from 'react';
+import type { FC } from 'react';
+import React from 'react';
 import { useOutletContext } from '@remix-run/react';
 import type { SupabaseOutletContext } from '~/root';
 
+//TODO: 로그인 UI로
 const Login: FC<LoginProps> = props => {
   const {} = props;
   const { supabase } = useOutletContext<SupabaseOutletContext>();

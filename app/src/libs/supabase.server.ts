@@ -1,7 +1,18 @@
-import { createClient } from '@supabase/supabase-js';
+import { createServerClient } from '@supabase/auth-helpers-remix';
 import type { Database } from '../types/db_types';
+import type { Request, Response } from '@remix-run/node';
 
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_KEY;
 
-export default createClient<Database>(supabaseUrl || '', supabaseKey || '');
+export default ({
+  request,
+  response,
+}: {
+  request: Request;
+  response: Response;
+}) =>
+  createServerClient<Database>(supabaseUrl || '', supabaseKey || '', {
+    request,
+    response,
+  });

@@ -4,40 +4,43 @@ export type Json =
   | boolean
   | null
   | { [key: string]: Json }
-  | Json[];
+  | Json[]
 
 export interface Database {
   public: {
     Tables: {
-      users: {
+      messages: {
         Row: {
-          createdAt: string;
-          email: string;
-          id: number;
-          password: string | null;
-        };
+          body: string | null
+          created_at: string
+          id: number
+          title: string
+          user_id: string
+        }
         Insert: {
-          createdAt?: string;
-          email?: string;
-          id?: number;
-          password?: string | null;
-        };
+          body?: string | null
+          created_at?: string
+          id?: number
+          title?: string
+          user_id: string
+        }
         Update: {
-          createdAt?: string;
-          email?: string;
-          id?: number;
-          password?: string | null;
-        };
-      };
-    };
+          body?: string | null
+          created_at?: string
+          id?: number
+          title?: string
+          user_id?: string
+        }
+      }
+    }
     Views: {
-      [_ in never]: never;
-    };
+      [_ in never]: never
+    }
     Functions: {
-      [_ in never]: never;
-    };
+      [_ in never]: never
+    }
     Enums: {
-      [_ in never]: never;
-    };
-  };
+      [_ in never]: never
+    }
+  }
 }
