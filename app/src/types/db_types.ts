@@ -22,7 +22,7 @@ export interface Database {
           created_at?: string
           id?: number
           title?: string
-          user_id: string
+          user_id?: string
         }
         Update: {
           body?: string | null

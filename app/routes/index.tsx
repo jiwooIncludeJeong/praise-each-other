@@ -1,9 +1,24 @@
-import type { LoaderArgs } from '@remix-run/node';
+import type { ActionArgs, LoaderArgs } from '@remix-run/node';
 import { createSupabaseClient } from 'src/libs';
-import { useLoaderData } from '@remix-run/react';
+import { Form, useLoaderData } from '@remix-run/react';
 import { Login } from '@components/common';
 import { json, Response } from '@remix-run/node';
 
+export const action = async ({ request }: ActionArgs) => {
+  const response = new Response();
+  // @ts-ignore
+  const supabase = createSupabaseClient({ request, response });
+
+  const { message } = Object.fromEntries(await request.formData());
+  const { error } = await supabase
+    .from('messages')
+    .insert({ body: String(message) });
+
+  if (error) {
+    console.log(error);
+  }
+  return json(null, { headers: response.headers });
+};
 export const loader = async ({ request }: LoaderArgs) => {
   const response = new Response();
   // @ts-ignore
@@ -39,6 +54,10 @@ export default function Index() {
             {v.title} : {v.body}
           </div>
         ))}
+      <Form method={'post'}>
+        <input type={'text'} name={'message'} />
+        <button type={'submit'}>보내기</button>
+      </Form>
     </div>
   );
 }
