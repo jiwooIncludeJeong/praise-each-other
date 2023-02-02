@@ -1,5 +1,5 @@
-import type {LinksFunction, MetaFunction, LoaderArgs} from '@remix-run/node';
-import {json, Response} from '@remix-run/node';
+import type { LinksFunction, MetaFunction, LoaderArgs } from '@remix-run/node';
+import { json, Response } from '@remix-run/node';
 import {
   Links,
   LiveReload,
@@ -10,16 +10,16 @@ import {
   useLoaderData,
   useRevalidator,
 } from '@remix-run/react';
-import {RecoilRoot} from 'recoil';
+import { RecoilRoot } from 'recoil';
 import ThemeLayout from '@components/common/ThemeLayout/ThemeLayout';
-import {GlobalStyles} from '@styles/global-styles';
-import {Normalize} from 'styled-normalize';
-import {useEffect, useState} from 'react';
-import {createSupabaseClient} from 'src/libs';
-import {createBrowserClient} from '@supabase/auth-helpers-remix';
+import { GlobalStyles } from '@styles/global-styles';
+import { Normalize } from 'styled-normalize';
+import { useEffect, useState } from 'react';
+import { createSupabaseClient } from 'src/libs';
+import { createBrowserClient } from '@supabase/auth-helpers-remix';
 
-import type {SupabaseClient} from '@supabase/supabase-js';
-import type {Database} from 'src/types/db_types';
+import type { SupabaseClient } from '@supabase/supabase-js';
+import type { Database } from 'src/types/db_types';
 
 type TypedSupabaseClinet = SupabaseClient<Database>;
 
@@ -47,12 +47,12 @@ export const meta: MetaFunction = () => ({
   title: 'PEO',
   description: 'Praise Each Other',
   viewport:
-      'user-scalable=0, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width, height=device-height, viewport-fit=cover',
+    'user-scalable=0, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width, height=device-height, viewport-fit=cover',
   'apple-mobile-web-app-capable': 'yes',
   'apple-mobile-web-app-status-bar-style': 'default',
 });
 
-export const loader = async ({request}: LoaderArgs) => {
+export const loader = async ({ request }: LoaderArgs) => {
   // Server Side의 값을 받아오기 위해
   const env = {
     SUPABASE_URL: process.env.SUPABASE_URL || '',
@@ -61,29 +61,29 @@ export const loader = async ({request}: LoaderArgs) => {
 
   const response = new Response();
   // @ts-ignore
-  const supabase = createSupabaseClient({request, response});
+  const supabase = createSupabaseClient({ request, response });
 
   const {
-    data: {session},
+    data: { session },
   } = await supabase.auth.getSession();
 
-  return json({env, session}, {headers: response.headers});
+  return json({ env, session }, { headers: response.headers });
 };
 
 export default function App() {
-  const {env, session} = useLoaderData<typeof loader>();
+  const { env, session } = useLoaderData<typeof loader>();
 
   const revalidator = useRevalidator();
 
   const [supabase] = useState(() =>
-      createBrowserClient<Database>(env.SUPABASE_URL, env.SUPABASE_KEY),
+    createBrowserClient<Database>(env.SUPABASE_URL, env.SUPABASE_KEY),
   );
 
   const serverAccessToken = session?.access_token;
 
   useEffect(() => {
     const {
-      data: {subscription},
+      data: { subscription },
     } = supabase.auth.onAuthStateChange((event, session) => {
       if (session?.access_token !== serverAccessToken) {
         // call loaders again
@@ -93,28 +93,28 @@ export default function App() {
 
     return () => {
       subscription.unsubscribe();
-    }
+    };
   }, []);
 
   return (
-      <html lang="kr">
+    <html lang="kr">
       <head>
-        <Meta/>
-        <Links/>
+        <Meta />
+        <Links />
       </head>
 
       <body>
-      <RecoilRoot>
-        <ThemeLayout>
-          <Normalize/>
-          <GlobalStyles/>
-          <Outlet context={{supabase}}/>
-          <ScrollRestoration/>
-          <Scripts/>
-          <LiveReload/>
-        </ThemeLayout>
-      </RecoilRoot>
+        <RecoilRoot>
+          <ThemeLayout>
+            <Normalize />
+            <GlobalStyles />
+            <Outlet context={{ supabase }} />
+            <ScrollRestoration />
+            <Scripts />
+            <LiveReload />
+          </ThemeLayout>
+        </RecoilRoot>
       </body>
-      </html>
+    </html>
   );
 }
