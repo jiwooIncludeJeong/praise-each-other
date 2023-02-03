@@ -20,6 +20,7 @@ import { createBrowserClient } from '@supabase/auth-helpers-remix';
 
 import type { SupabaseClient } from '@supabase/supabase-js';
 import type { Database } from 'src/types/db_types';
+import { MobileLayout } from '@components/common';
 
 type TypedSupabaseClinet = SupabaseClient<Database>;
 
@@ -101,17 +102,20 @@ export default function App() {
       <head>
         <Meta />
         <Links />
+        {typeof document === 'undefined' ? '__STYLES__' : null}
       </head>
 
       <body>
         <RecoilRoot>
           <ThemeLayout>
-            <Normalize />
-            <GlobalStyles />
-            <Outlet context={{ supabase }} />
-            <ScrollRestoration />
-            <Scripts />
-            <LiveReload />
+            <MobileLayout>
+              <Normalize />
+              <GlobalStyles />
+              <Outlet context={{ supabase }} />
+              <ScrollRestoration />
+              <Scripts />
+              <LiveReload />
+            </MobileLayout>
           </ThemeLayout>
         </RecoilRoot>
       </body>
