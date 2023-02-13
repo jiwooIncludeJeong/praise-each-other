@@ -3,10 +3,23 @@
   "sideEffects": false,
   "scripts": {
     "build": "remix build",
-    "dev": "remix dev",
+    "dev:remix": "remix dev",
     "start": "remix-serve build",
     "typecheck": "tsc -b",
-    "gen-types": "supabase gen types typescript --project-id thdwftgaeloxumzkaawu > app/src/types/db_types.ts"
+    "gen-types": "supabase gen types typescript --project-id thdwftgaeloxumzkaawu > app/src/types/db_types.ts",
+    "icons": "npx @svgr/cli --out-dir app/src/components/icons -- app/src/assets/icons",
+    "icons:watch": "npm-watch icons",
+    "dev:svg": "run-s icons icons:watch",
+    "dev": "run-p dev:*"
+  },
+  "watch": {
+    "icons": {
+      "patterns": [
+        "icons"
+      ],
+      "extensions": "svg",
+      "quiet": false
+    }
   },
   "dependencies": {
     "@remix-run/node": "^1.10.1",
@@ -14,6 +27,9 @@
     "@remix-run/serve": "^1.10.1",
     "@supabase/auth-helpers-remix": "^0.1.4",
     "@supabase/supabase-js": "^2.4.0",
+    "@svgr/plugin-jsx": "^6.5.1",
+    "@svgr/plugin-prettier": "^6.5.1",
+    "@svgr/plugin-svgo": "^6.5.1",
     "@types/styled-components": "^5.1.26",
     "@typescript-eslint/eslint-plugin": "^5.48.2",
     "eslint-plugin-prettier": "^4.2.1",
@@ -30,6 +46,7 @@
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.8",
     "eslint": "^8.27.0",
+    "npm-watch": "^0.11.0",
     "prettier": "^2.8.3",
     "typescript": "^4.8.4"
   },
