@@ -2,7 +2,8 @@ import type * as Icons from '@components/icons';
 
 export type BottomTabRouteType = {
   link: string;
-  icon: keyof typeof Icons;
+  inactiveIcon: keyof typeof Icons;
+  activeIcon: keyof typeof Icons;
 };
 
 export const BOTTOM_TAB_NAME = {
@@ -17,9 +18,21 @@ export const BottomTabRoute: Record<keyof typeof BOTTOM_TAB_NAME, string> = {
 };
 
 export const BottomTab: BottomTabRouteType[] = [
-  { link: BottomTabRoute['index'], icon: 'HomeIcon' },
-  { link: BottomTabRoute['praise'], icon: 'PraiseIcon' },
-  { link: BottomTabRoute['my-page'], icon: 'MypageIcon' },
+  {
+    link: BottomTabRoute['index'],
+    inactiveIcon: 'HomeIcon',
+    activeIcon: 'HomeIcon',
+  },
+  {
+    link: BottomTabRoute['praise'],
+    inactiveIcon: 'PraiseIcon',
+    activeIcon: 'PraiseIcon',
+  },
+  {
+    link: BottomTabRoute['my-page'],
+    inactiveIcon: 'MypageIcon',
+    activeIcon: 'MypageIcon',
+  },
 ];
 
 export const useBottomTabRoutes: string[] = [

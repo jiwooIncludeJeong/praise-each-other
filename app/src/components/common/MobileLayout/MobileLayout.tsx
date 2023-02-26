@@ -24,7 +24,7 @@ const MobileLayout: FC<MobileLayoutProps> = props => {
         renderBottomSheet={renderBottomSheet}
       >
         {children}
-        {renderBottomSheet && <BottomTab />}
+        {renderBottomSheet && <BottomTab currentPathname={location.pathname} />}
       </Layout.MobileLayoutBase>
     </Layout.LayoutBase>
   );

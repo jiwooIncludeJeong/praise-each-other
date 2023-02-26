@@ -7,17 +7,23 @@ import { withConstants } from 'src/utils';
 import { BOTTOM_TAB_HEIGHT } from '@components/design-system/BottomTab/BottomTab.constants';
 
 const BottomTab: FC<BottomTabProps> = props => {
-  const {} = props;
+  const { currentPathname } = props;
 
   return (
     <BottomTabContainer>
       {tabs.map(tab => (
-        <BottomTabItem key={tab.link} {...tab} />
+        <BottomTabItem
+          key={tab.link}
+          {...tab}
+          active={currentPathname === tab.link}
+        />
       ))}
     </BottomTabContainer>
   );
 };
 
-type BottomTabProps = {};
+type BottomTabProps = {
+  currentPathname: string;
+};
 
 export default withConstants(BottomTab, { BOTTOM_TAB_HEIGHT });

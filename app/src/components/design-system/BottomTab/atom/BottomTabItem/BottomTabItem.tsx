@@ -5,12 +5,12 @@ import { IconButton } from '@components/design-system/BottomTab/atom/BottomTabIt
 import type { BottomTabRouteType } from '@libs/Navigation/BottomTab';
 import { BOTTOM_TAB_HEIGHT } from '@components/design-system/BottomTab/BottomTab.constants';
 
-type BottomTabItemProps = BottomTabRouteType;
+type BottomTabItemProps = BottomTabRouteType & { active: boolean };
 
 const BottomTabItem: FC<BottomTabItemProps> = props => {
-  const { icon, link } = props;
+  const { activeIcon, inactiveIcon, link, active } = props;
 
-  const Icon = Icons[icon];
+  const Icon = Icons[active ? activeIcon : inactiveIcon];
 
   return (
     <IconButton size={BOTTOM_TAB_HEIGHT} to={link} replace={true}>
