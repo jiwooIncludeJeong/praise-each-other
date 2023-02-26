@@ -5,6 +5,7 @@ import { Login } from '@components/common';
 import { json, Response } from '@remix-run/node';
 import { Layout, TopNavigation } from '@components/design-system';
 import { LayoutBase } from '@components/design-system/Layout';
+import { useInsets } from '@hooks/common';
 
 export const action = async ({ request }: ActionArgs) => {
   const response = new Response();
@@ -37,6 +38,7 @@ export const loader = async ({ request }: LoaderArgs) => {
 export default function Index() {
   const { messages } = useLoaderData<typeof loader>();
 
+  const { top } = useInsets();
   const onClickToAdd = async () => {
     //FIXME: from is not a function error -> SSR , process is not defined -> CSR
     // const res = await supabase.from('User').select();
@@ -46,9 +48,7 @@ export default function Index() {
   return (
     <Layout.LayoutBase bgColor={'BLACK'}>
       <TopNavigation.NavBar screenName={'PEO'} />
-      <Layout.LayoutBase
-        padding={`${TopNavigation.NavBar.NAV_BAR_HEIGHT}px 20px 0 20px`}
-      >
+      <Layout.LayoutBase padding={`${top}px 20px 0 20px`}>
         <Login />
         {/*<div onClick={onClickToAdd} style={{ cursor: 'pointer' }}>*/}
         {/*  user 생성*/}
