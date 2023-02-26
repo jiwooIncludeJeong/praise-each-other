@@ -3,6 +3,8 @@ import { createSupabaseClient } from 'src/libs';
 import { Form, useLoaderData } from '@remix-run/react';
 import { Login } from '@components/common';
 import { json, Response } from '@remix-run/node';
+import { Layout, TopNavigation } from '@components/design-system';
+import { LayoutBase } from '@components/design-system/Layout';
 
 export const action = async ({ request }: ActionArgs) => {
   const response = new Response();
@@ -42,22 +44,26 @@ export default function Index() {
   };
 
   return (
-    <div style={{ fontFamily: 'system-ui, sans-serif', lineHeight: '1.4' }}>
-      <h1>PEO</h1>
-      <Login />
-      {/*<div onClick={onClickToAdd} style={{ cursor: 'pointer' }}>*/}
-      {/*  user 생성*/}
-      {/*</div>*/}
-      {!!messages?.length &&
-        messages.map(v => (
-          <div key={v.id} style={{ cursor: 'pointer' }}>
-            {v.title} : {v.body}
-          </div>
-        ))}
-      <Form method={'post'}>
-        <input type={'text'} name={'message'} />
-        <button type={'submit'}>보내기</button>
-      </Form>
-    </div>
+    <Layout.LayoutBase bgColor={'BLACK'}>
+      <TopNavigation.NavBar screenName={'PEO'} />
+      <Layout.LayoutBase
+        padding={`${TopNavigation.NavBar.NAV_BAR_HEIGHT}px 20px 0 20px`}
+      >
+        <Login />
+        {/*<div onClick={onClickToAdd} style={{ cursor: 'pointer' }}>*/}
+        {/*  user 생성*/}
+        {/*</div>*/}
+        {!!messages?.length &&
+          messages.map(v => (
+            <div key={v.id} style={{ cursor: 'pointer' }}>
+              {v.title} : {v.body}
+            </div>
+          ))}
+        <Form method={'post'}>
+          <input type={'text'} name={'message'} />
+          <button type={'submit'}>보내기</button>
+        </Form>
+      </Layout.LayoutBase>
+    </Layout.LayoutBase>
   );
 }

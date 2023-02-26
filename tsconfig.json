@@ -1,8 +1,18 @@
 {
-  "include": ["remix.env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"],
+  "include": [
+    "remix.env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
   "compilerOptions": {
-    "lib": ["DOM", "DOM.Iterable", "ES2019"],
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ES2019"
+    ],
     "isolatedModules": true,
     "esModuleInterop": true,
     "jsx": "react-jsx",
@@ -14,18 +24,40 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./app/*"],
-      "src/*" : ["./app/src/*"],
-      "@libs/*": ["./app/src/libs/*"],
-      "@store/*": ["./app/src/store/*"],
-      "@constants/*": ["./app/src/constants/*"],
-      "@hooks/*": ["./app/src/hooks/*"],
-      "@styles/*": ["./app/src/styles/*"],
-      "@assets/*": ["./app/src/assets/*"],
-      "@components/*": ["./app/src/components/*"],
-      "@types/*": ["./app/src/types/*"]
+      "~/*": [
+        "./app/*"
+      ],
+      "src/*": [
+        "./app/src/*"
+      ],
+      "@libs/*": [
+        "./app/src/libs/*"
+      ],
+      "@store/*": [
+        "./app/src/store/*"
+      ],
+      "@constants/*": [
+        "./app/src/constants/*"
+      ],
+      "@hooks/*": [
+        "./app/src/hooks/*"
+      ],
+      "@styles/*": [
+        "./app/src/styles/*"
+      ],
+      "@assets/*": [
+        "./app/src/assets/*"
+      ],
+      "@components/*": [
+        "./app/src/components/*"
+      ],
+      "@types/*": [
+        "./app/src/types/*"
+      ],
+      "@utils/*": [
+        "./app/src/utils/*"
+      ]
     },
-
     // Remix takes care of building everything in `remix build`.
     "noEmit": true
   }

@@ -1,7 +1,13 @@
-export default function MyPage() {
+import { TopNavigation } from '@components/design-system';
+import { Layout } from '@components/design-system';
+
+export default function Praise() {
   return (
-    <div style={{ fontFamily: 'system-ui, sans-serif', lineHeight: '1.4' }}>
-      <h1>칭찬하기</h1>
-    </div>
+    <Layout.LayoutBase bgColor={'BLACK'}>
+      <TopNavigation.NavBar screenName={'칭찬하기'} />
+      <Layout.LayoutBase
+        padding={`${TopNavigation.NavBar.NAV_BAR_HEIGHT}px 20px 0 20px`}
+      />
+    </Layout.LayoutBase>
   );
 }

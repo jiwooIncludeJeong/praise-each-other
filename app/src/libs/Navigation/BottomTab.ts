@@ -21,3 +21,12 @@ export const BottomTab: BottomTabRouteType[] = [
   { link: BottomTabRoute['praise'], icon: 'PraiseIcon' },
   { link: BottomTabRoute['my-page'], icon: 'MypageIcon' },
 ];
+
+export const useBottomTabRoutes: string[] = [
+  BottomTabRoute.praise,
+  BottomTabRoute['my-page'],
+  BottomTabRoute.index,
+];
+
+export const shouldRenderBottomSheet = (url: string) =>
+  useBottomTabRoutes.includes(url);

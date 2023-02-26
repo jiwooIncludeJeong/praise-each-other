@@ -1,23 +1,24 @@
-import type { FC } from 'react';
+import type {FC} from 'react';
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
-import { commonHooks } from '@hooks/index';
-import { COMMON } from '@constants/index';
-import { THEME } from '@styles/theme';
+import {ThemeProvider} from 'styled-components';
+import {commonHooks} from '@hooks/index';
+import {COMMON} from '@constants/index';
+import {THEME} from '@styles/theme';
 
 type ThemeLayoutProps = {
   children: React.ReactNode;
 };
 
 const ThemeLayout: FC<ThemeLayoutProps> = props => {
-  const { children } = props;
+  const {children} = props;
 
-  const { theme } = commonHooks.useTheme();
+  const {theme} = commonHooks.useTheme();
+
 
   return (
-    <ThemeProvider theme={theme === COMMON.THEME.LIGHT ? THEME : THEME}>
-      {children}
-    </ThemeProvider>
+      <ThemeProvider theme={theme === COMMON.THEME.LIGHT ? THEME : THEME}>
+        {children}
+      </ThemeProvider>
   );
 };
 

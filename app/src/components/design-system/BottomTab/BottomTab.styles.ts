@@ -11,4 +11,5 @@ export const BottomTabContainer = styled(LayoutBase)`
   border-top: 1px solid gray;
   justify-content: space-around;
   align-items: center;
+  background-color: ${({ theme }) => theme.COLOR.WHITE};
 `;
