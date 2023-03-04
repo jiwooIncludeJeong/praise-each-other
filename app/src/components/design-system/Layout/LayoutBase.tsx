@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import type { ColorKeys } from '@assets/color';
-import { NavBar } from '@components/design-system/TopNavigation';
 
 export const LayoutBase = styled.div<{
   bgColor?: ColorKeys;
@@ -9,20 +8,30 @@ export const LayoutBase = styled.div<{
   justifyContent?: 'space-between' | 'center' | 'space-around' | 'flex-end';
   margin?: string;
   padding?: string;
-  size?: { width: number | string; height: number | string } | 'unset';
+  width?: number | string;
+  height?: number | string;
   borderRadius?: string;
 }>`
   position: relative;
   display: flex;
   flex-direction: column;
-  ${props => {
-    if (props.size === 'unset') {
-      return 'width: unset; height: unset;';
+  ${({ width }) => {
+    if (typeof width === 'number') {
+      return `width:${width}px;`;
     }
-    if (props.size?.width) {
-      return `width:${props.size.width}px; height:${props.size.height};`;
+    if (typeof width === 'string') {
+      return `width:${width};`;
     }
-    return 'width:100%; height:100%;';
+    return `width:100%;`;
+  }}
+  ${({ height }) => {
+    if (typeof height === 'number') {
+      return `height:${height}px;`;
+    }
+    if (typeof height === 'string') {
+      return `height:${height};`;
+    }
+    return `height:100%;`;
   }}
   background-color: ${({ bgColor, theme }) =>
     bgColor !== undefined ? theme.COLOR[bgColor] : 'transparent'};
@@ -78,4 +87,32 @@ export const Row = styled.div<{
   background-color: ${props =>
     props.bgColor !== null ? props.bgColor : 'transparent'};
   cursor: ${props => (props.pointer ? 'pointer' : 'unset')};
+`;
+
+export const AbsoluteFillScreen = styled(LayoutBase)`
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  position: absolute;
+
+  @media only screen and ${({ theme }) => theme.MIN_ONLY_MOBILE} {
+    width: 375px;
+    align-self: center;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+`;
+
+export const Absolute = styled(LayoutBase)<{
+  top?: number;
+  bottom?: number;
+  left?: number;
+  right?: number;
+}>`
+  position: absolute;
+  ${({ top }) => `top: ${top}px;`}
+  ${({ bottom }) => `bottom: ${bottom}px;`}
+  ${({ right }) => `right: ${right}px;`}
+  ${({ left }) => `left:${left}px;`}
 `;

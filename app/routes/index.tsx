@@ -6,6 +6,8 @@ import { json, Response } from '@remix-run/node';
 import { Layout, TopNavigation } from '@components/design-system';
 import { LayoutBase } from '@components/design-system/Layout';
 import { useInsets } from '@hooks/common';
+import { useCallback, useEffect } from 'react';
+import BottomSheet from '@components/design-system/BottomSheet/BottomSheet';
 
 export const action = async ({ request }: ActionArgs) => {
   const response = new Response();
@@ -45,14 +47,23 @@ export default function Index() {
     // console.log(res);
   };
 
+  const open = useCallback(() => {
+    console.log('open');
+    BottomSheet.show({
+      Component: <></>,
+      maxHeight: 300,
+    });
+  }, []);
+
   return (
     <Layout.LayoutBase bgColor={'BLACK'}>
       <TopNavigation.NavBar screenName={'PEO'} />
-      <Layout.LayoutBase padding={`${top}px 20px 0 20px`}>
+      <Layout.LayoutBase padding={`${top}px 20px 0 20px`} bgColor={'WHITE'}>
         <Login />
         {/*<div onClick={onClickToAdd} style={{ cursor: 'pointer' }}>*/}
         {/*  user 생성*/}
         {/*</div>*/}
+        <button onClick={open}>바텀싯 열기</button>
         {!!messages?.length &&
           messages.map(v => (
             <div key={v.id} style={{ cursor: 'pointer' }}>

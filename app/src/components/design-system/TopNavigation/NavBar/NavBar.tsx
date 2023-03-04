@@ -6,6 +6,7 @@ import * as Icons from '@components/icons';
 import * as S from './NavBar.styles';
 import { Button } from '@components/design-system';
 import { withConstants } from 'src/utils';
+import { COMMON } from '@constants/index';
 
 const NavBar: FC<NavBarProps> = props => {
   const { screenName, close, closeButton } = props;
@@ -17,7 +18,7 @@ const NavBar: FC<NavBarProps> = props => {
       padding={`${PADDING}px`}
       absolute={true}
       bgColor={'WHITE'}
-      style={{ height: NAV_BAR_HEIGHT }}
+      style={{ height: NAV_BAR_HEIGHT, zIndex: COMMON.LAYOUT_Z.NAV_BAR }}
     >
       {CloseButton && (
         <Button.Button onClick={close}>
