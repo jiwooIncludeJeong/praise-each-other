@@ -9,27 +9,96 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
-      messages: {
+      category: {
         Row: {
-          body: string | null
-          created_at: string
           id: number
-          title: string
-          user_id: string
+          name: string | null
         }
         Insert: {
-          body?: string | null
-          created_at?: string
           id?: number
-          title?: string
-          user_id?: string
+          name?: string | null
         }
         Update: {
-          body?: string | null
-          created_at?: string
           id?: number
-          title?: string
-          user_id?: string
+          name?: string | null
+        }
+      }
+      sent_feedback: {
+        Row: {
+          anonymous: boolean
+          category_id: number
+          created_at: string
+          from_user_id: string
+          id: number
+          sticker_id: number
+          text: string
+          to_user_id: string | null
+        }
+        Insert: {
+          anonymous: boolean
+          category_id: number
+          created_at?: string
+          from_user_id: string
+          id?: number
+          sticker_id: number
+          text: string
+          to_user_id?: string | null
+        }
+        Update: {
+          anonymous?: boolean
+          category_id?: number
+          created_at?: string
+          from_user_id?: string
+          id?: number
+          sticker_id?: number
+          text?: string
+          to_user_id?: string | null
+        }
+      }
+      sticker: {
+        Row: {
+          id: number
+          imageUrl: string | null
+        }
+        Insert: {
+          id?: number
+          imageUrl?: string | null
+        }
+        Update: {
+          id?: number
+          imageUrl?: string | null
+        }
+      }
+      user_profile: {
+        Row: {
+          age: number | null
+          birthday: string | null
+          code: string
+          created_at: string | null
+          id: string
+          name: string
+          nickname: string
+          profileImageUrl: string | null
+        }
+        Insert: {
+          age?: number | null
+          birthday?: string | null
+          code: string
+          created_at?: string | null
+          id: string
+          name: string
+          nickname: string
+          profileImageUrl?: string | null
+        }
+        Update: {
+          age?: number | null
+          birthday?: string | null
+          code?: string
+          created_at?: string | null
+          id?: string
+          name?: string
+          nickname?: string
+          profileImageUrl?: string | null
         }
       }
     }
@@ -40,6 +109,9 @@ export interface Database {
       [_ in never]: never
     }
     Enums: {
+      [_ in never]: never
+    }
+    CompositeTypes: {
       [_ in never]: never
     }
   }

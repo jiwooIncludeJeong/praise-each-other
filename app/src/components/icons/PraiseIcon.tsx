@@ -3,11 +3,11 @@ import { SVGProps } from 'react';
 const SvgPraiseIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    shapeRendering="geometricPrecision"
-    textRendering="geometricPrecision"
-    imageRendering="optimizeQuality"
     fillRule="evenodd"
     clipRule="evenodd"
+    imageRendering="optimizeQuality"
+    shapeRendering="geometricPrecision"
+    textRendering="geometricPrecision"
     viewBox="0 0 512 169.53"
     {...props}
   >
@@ -27,9 +27,9 @@ const SvgPraiseIcon = (props: SVGProps<SVGSVGElement>) => (
       d="m397.16 17.52.83 1.29c8.83 13.57 18.03 27.7 3.29 45.69l-7.38-6.04c10.34-12.62 3.08-23.77-3.88-34.48l-.84-1.28 7.98-5.18z"
     />
     <circle
+      r={18.65}
       fill="#0B9444"
       transform="scale(.46134 .46135) rotate(45 303.862 1417.254)"
-      r={18.65}
     />
     <path
       fill="#283890"
@@ -49,9 +49,9 @@ const SvgPraiseIcon = (props: SVGProps<SVGSVGElement>) => (
       d="M75.53 56.34c-3.36 3.36-3.36 8.8 0 12.17 3.36 3.35 8.81 3.35 12.17 0a8.607 8.607 0 0 0-12.17-12.17zm396.7-48.59-7.67 15.13 11.33 11.45-16.05-2.18-7.73 14.32-2.55-15.95-16-2.82 14.38-7.45-2.35-16.65 11.62 11.92 15.02-7.77zm-35.76 48.59c3.36 3.36 3.36 8.8 0 12.17-3.36 3.35-8.81 3.35-12.17 0a8.607 8.607 0 0 1 12.17-12.17zM39.77 7.75l7.67 15.13-11.33 11.45 16.05-2.18 7.73 14.32 2.55-15.95 16-2.82-14.38-7.45L66.41 3.6 54.79 15.52 39.77 7.75z"
     />
     <circle
+      r={18.65}
       fill="#0B9444"
       transform="scale(-.46134 .46135) rotate(45 -251.037 77.609)"
-      r={18.65}
     />
     <path
       fill="#283890"

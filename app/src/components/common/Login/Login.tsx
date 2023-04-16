@@ -1,14 +1,20 @@
 import type { FC } from 'react';
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useOutletContext } from '@remix-run/react';
 import type { SupabaseOutletContext } from '~/root';
+import LoginButton from '@components/common/Login/atom/LoginButton';
+import { useRecoilState } from 'recoil';
+import { UserStore } from 'src/store';
 
 //TODO: 로그인 UI로
 const Login: FC<LoginProps> = props => {
   const {} = props;
+
+  const [isLogIn, setIsLogIn] = useRecoilState(UserStore.isLogInAtom);
+
   const { supabase } = useOutletContext<SupabaseOutletContext>();
 
-  const handleClickLogin = async () => {
+  const handleGithubLogin = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'github',
     });
@@ -17,17 +23,37 @@ const Login: FC<LoginProps> = props => {
     }
   };
 
-  const handleClickLogout = async () => {
-    const { error } = await supabase.auth.signOut();
+  const handleGoogleLogin = async () => {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+    });
     if (error) {
       console.log(error);
     }
   };
 
-  return (
+  const handleLogout = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      console.log(error);
+    }
+    setIsLogIn(false);
+  };
+
+  useEffect(() => {
+    const getSession = async () => {
+      const res = await supabase.auth.getSession();
+      setIsLogIn(!!res.data);
+    };
+    getSession();
+  }, []);
+
+  return isLogIn ? (
+    <LoginButton text={'로그아웃'} onClick={handleLogout}></LoginButton>
+  ) : (
     <>
-      <button onClick={handleClickLogout}>로그아웃</button>
-      <button onClick={handleClickLogin}>로그인</button>
+      <LoginButton text={'깃헙 로그인'} onClick={handleGithubLogin} />
+      <LoginButton text={'구글  로그인'} onClick={handleGoogleLogin} />
     </>
   );
 };

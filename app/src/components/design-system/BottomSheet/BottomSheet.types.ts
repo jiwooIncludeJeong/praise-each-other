@@ -11,3 +11,9 @@ export type BottomSheetParams = {
 };
 
 export type BottomSheetMaxHeight = 'FULLSCREEN' | number;
+
+export type BottomSheetContextType = {
+  close: (callback?: () => void) => void;
+  extraHeight: number;
+  setExtraHeight: (pb: number) => void;
+};

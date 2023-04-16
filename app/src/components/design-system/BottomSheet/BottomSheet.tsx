@@ -5,9 +5,10 @@ import { globalBottomSheet$ } from '@libs/GlobalComponent/globalComponent$';
 import { filter, map } from 'rxjs';
 import { Layout } from '@components/design-system';
 import { LAYOUT_Z } from '@constants/common';
-import Header from '@components/design-system/BottomSheet/atom/Header';
+import Header from '@components/design-system/BottomSheet/components/Header';
 import styled from 'styled-components';
 import { useWindowSize } from '@hooks/common';
+import BottomSheetContextProvider from '@components/design-system/BottomSheet/BottomSheetContextProvider';
 
 const BottomSheetComponent: FC = () => {
   const { height } = useWindowSize();
@@ -26,6 +27,7 @@ const BottomSheetComponent: FC = () => {
   ] = useState<BottomSheetState>({ visible: false });
 
   const [anim, setAnim] = useState(false);
+  const [extraHeight, setExtraHeight] = useState(0);
 
   const close = () => {
     return new Promise(resolve => {
@@ -38,6 +40,7 @@ const BottomSheetComponent: FC = () => {
     close().then(() => {
       setState({ visible: false });
       setDraggingY(0);
+      setExtraHeight(0);
       globalBottomSheet$.complete();
     });
   }, []);
@@ -92,24 +95,35 @@ const BottomSheetComponent: FC = () => {
       <AnimatedBgLayout
         width={'100%'}
         height={'100%'}
-        bgColor={'BLACK'}
-        onClick={setInvisible}
+        bgColor={dimColor ?? 'BLACK'}
+        onClick={disableClose ? () => {} : setInvisible}
         opacity={anim ? 0.5 : 0}
       />
       <AnimatedLayout
         left={0}
         bottom={0}
-        height={bottomSheetHeight - Header.HEIGHT}
-        bgColor={'WHITE'}
+        height={
+          bottomSheetHeight + extraHeight - (!hideHeader ? Header.HEIGHT : 0)
+        }
+        bgColor={bgColor ?? 'WHITE'}
         style={{ overflow: 'visible' }}
         translateY={anim ? draggingY : bottomSheetHeight}
         isDragging={dragging}
       >
-        <Header
-          setDraggingY={setDraggingY}
-          setDragging={setDragging}
-          closeY={bottomSheetHeight * CLOSE_Y_RATIO}
-        ></Header>
+        <BottomSheetContextProvider
+          close={setInvisible}
+          extraHeight={extraHeight}
+          setExtraHeight={setExtraHeight}
+        >
+          {!hideHeader && (
+            <Header
+              setDraggingY={setDraggingY}
+              setDragging={setDragging}
+              closeY={bottomSheetHeight * CLOSE_Y_RATIO}
+            />
+          )}
+          {Component}
+        </BottomSheetContextProvider>
       </AnimatedLayout>
     </Layout.AbsoluteFillScreen>
   );

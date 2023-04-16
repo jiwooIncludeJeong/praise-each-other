@@ -58,22 +58,26 @@ export default function Index() {
   return (
     <Layout.LayoutBase bgColor={'BLACK'}>
       <TopNavigation.NavBar screenName={'PEO'} />
-      <Layout.LayoutBase padding={`${top}px 20px 0 20px`} bgColor={'WHITE'}>
+      <Layout.LayoutBase
+        padding={`${top}px 20px 0 20px`}
+        bgColor={'WHITE'}
+        width={'100%'}
+      >
         <Login />
         {/*<div onClick={onClickToAdd} style={{ cursor: 'pointer' }}>*/}
         {/*  user 생성*/}
         {/*</div>*/}
-        <button onClick={open}>바텀싯 열기</button>
-        {!!messages?.length &&
-          messages.map(v => (
-            <div key={v.id} style={{ cursor: 'pointer' }}>
-              {v.title} : {v.body}
-            </div>
-          ))}
-        <Form method={'post'}>
-          <input type={'text'} name={'message'} />
-          <button type={'submit'}>보내기</button>
-        </Form>
+        {/*<button onClick={open}>바텀싯 열기</button>*/}
+        {/*{!!messages?.length &&*/}
+        {/*  messages.map(v => (*/}
+        {/*    <div key={v.id} style={{ cursor: 'pointer' }}>*/}
+        {/*      {v.title} : {v.body}*/}
+        {/*    </div>*/}
+        {/*  ))}*/}
+        {/*<Form method={'post'}>*/}
+        {/*  <input type={'text'} name={'message'} />*/}
+        {/*  <button type={'submit'}>보내기</button>*/}
+        {/*</Form>*/}
       </Layout.LayoutBase>
     </Layout.LayoutBase>
   );

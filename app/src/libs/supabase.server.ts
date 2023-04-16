@@ -1,5 +1,5 @@
 import { createServerClient } from '@supabase/auth-helpers-remix';
-import type { Database } from '../types/db_types';
+import type { Database } from 'src/types';
 import type { Request, Response } from '@remix-run/node';
 
 const supabaseUrl = process.env.SUPABASE_URL;

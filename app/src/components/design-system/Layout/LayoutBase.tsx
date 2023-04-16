@@ -11,6 +11,7 @@ export const LayoutBase = styled.div<{
   width?: number | string;
   height?: number | string;
   borderRadius?: string;
+  outline?: ColorKeys;
 }>`
   position: relative;
   display: flex;
@@ -31,7 +32,7 @@ export const LayoutBase = styled.div<{
     if (typeof height === 'string') {
       return `height:${height};`;
     }
-    return `height:100%;`;
+    return `height:unset;`;
   }}
   background-color: ${({ bgColor, theme }) =>
     bgColor !== undefined ? theme.COLOR[bgColor] : 'transparent'};
@@ -45,6 +46,10 @@ export const LayoutBase = styled.div<{
   margin: ${props => (props.margin !== null ? props.margin : '0')};
   padding: ${props => (props.padding !== null ? props.padding : '0')};
   border-radius: ${props => (props.borderRadius ? props.borderRadius : '0')};
+
+  ${({ outline, theme }) =>
+    outline &&
+    `border-color: ${theme.COLOR[outline]}; border-width: 1px; border-style: solid; `};
 `;
 
 export const Row = styled.div<{
