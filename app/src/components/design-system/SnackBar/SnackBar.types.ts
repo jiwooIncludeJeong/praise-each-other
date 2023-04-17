@@ -4,9 +4,10 @@ export type SnackBarParams = {
   type: 'SNACK_BAR';
   title?: string;
   duration?: number;
-  position?: 'top';
+  position?: 'top' | 'bottom';
   iconName?: keyof typeof Icons;
-  onPress?: () => void;
+  onClick?: () => void;
+  visible: boolean;
 };
 
 export type SNACK_BAR_STATUS =

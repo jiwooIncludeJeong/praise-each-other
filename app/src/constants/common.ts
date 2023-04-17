@@ -4,7 +4,8 @@ export const THEME = {
 } as const;
 
 export const LAYOUT_Z = {
-  NAV_BAR: 12,
-  BOTTOM_TAB: 12,
-  BOTTOM_SHEET: 13,
+  NAV_BAR: 4,
+  BOTTOM_TAB: 8,
+  BOTTOM_SHEET: 16,
+  SNACK_BAR: 6,
 };

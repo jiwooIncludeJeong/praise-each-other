@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import React from 'react';
 import * as Icons from '../../../../icons/index';
-import { IconButton } from '@components/design-system/BottomTab/atom/BottomTabItem/BottomTabItem.styles';
+import { IconButton } from '@components/design-system/BottomTab/components/BottomTabItem/BottomTabItem.styles';
 import type { BottomTabRouteType } from '@libs/Navigation/BottomTab';
 import { BOTTOM_TAB_HEIGHT } from '@components/design-system/BottomTab/BottomTab.constants';
 

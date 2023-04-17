@@ -5,6 +5,7 @@ import {
   globalBottomSheet$,
   globalComponents$,
 } from '@libs/GlobalComponent/globalComponent$';
+import { SnackBarComponent } from '@components/design-system/SnackBar/SnackBar';
 
 const GlobalComponents: FC<GlobalComponentsProps> = props => {
   const { children } = props;
@@ -17,6 +18,7 @@ const GlobalComponents: FC<GlobalComponentsProps> = props => {
   return (
     <>
       {children}
+      <SnackBarComponent />
       <BottomSheetComponent />
     </>
   );

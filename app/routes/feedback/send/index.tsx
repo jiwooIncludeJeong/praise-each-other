@@ -7,7 +7,7 @@ import {
 import type { LoaderArgs } from '@remix-run/node';
 import { json, Response } from '@remix-run/node';
 import { createSupabaseClient } from 'src/libs';
-import { useLoaderData, useOutletContext } from '@remix-run/react';
+import { useLoaderData, useNavigate, useOutletContext } from '@remix-run/react';
 import CategoryButton from '@components/feedback/CategoryButton/CategoryButton';
 import { useRef, useState } from 'react';
 import type { Database } from 'src/types';
@@ -15,6 +15,8 @@ import BottomSheet from '@components/design-system/BottomSheet/BottomSheet';
 import CategorySelectBottomSheet from '@components/feedback/CategorySelectBottomSheet/CategorySelectBottomSheet';
 import StickerButton from '@components/feedback/StickerButton/StickerButton';
 import type { SupabaseOutletContext } from '~/root';
+import SnackBar from '@components/design-system/SnackBar/SnackBar';
+import { useRoutes } from 'react-router';
 
 export const loader = async ({ request }: LoaderArgs) => {
   const response = new Response();
@@ -30,6 +32,7 @@ export const loader = async ({ request }: LoaderArgs) => {
 };
 
 export default function SendFeedback() {
+  const navigate = useNavigate();
   const { categories, stickers } = useLoaderData<typeof loader>();
   const { supabase } = useOutletContext<SupabaseOutletContext>();
 
@@ -66,8 +69,13 @@ export default function SendFeedback() {
       text: textRef.current?.value || '',
     });
     const { error } = res;
-    if (error) return alert('실패');
-    alert('성공');
+    if (error)
+      return SnackBar.show({
+        title: '피드백 등록에 실패했어요😭',
+        visible: true,
+      });
+    SnackBar.show({ title: '피드백 등록에 성공했어요🤗', visible: true });
+    navigate(-1);
   };
 
   return (

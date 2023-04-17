@@ -18,7 +18,11 @@ const NavBar: FC<NavBarProps> = props => {
       padding={`${PADDING}px`}
       absolute={true}
       bgColor={'WHITE'}
-      style={{ height: NAV_BAR_HEIGHT, zIndex: COMMON.LAYOUT_Z.NAV_BAR }}
+      style={{
+        height: NAV_BAR_HEIGHT,
+        zIndex: COMMON.LAYOUT_Z.NAV_BAR,
+        position: 'fixed',
+      }}
     >
       {CloseButton && (
         <Button.Button onClick={close}>

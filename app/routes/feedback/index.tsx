@@ -3,8 +3,6 @@ import { Layout } from '@components/design-system';
 import { Link } from '@remix-run/react';
 
 export default function Feedback() {
-  // const a = useRou
-
   return (
     <Layout.LayoutBase>
       <TopNavigation.NavBar screenName={'피드백'} />
